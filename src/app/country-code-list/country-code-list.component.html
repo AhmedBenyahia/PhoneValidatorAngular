@@ -1,0 +1,9 @@
+<mat-form-field style="width:88%;">  <!--  TODO: remove this-->
+  <mat-select placeholder="Country (optional)" (selectionChange)="selectCountry($event)">
+    <mat-option *ngFor="let country of $countries | async" [value]="country">
+      <mat-icon>
+        <img [src]="'http://purecatamphetamine.github.io/country-flag-icons/3x2/' + country.countryCode  + '.svg'"/>
+      </mat-icon>{{country.countryName}} ({{country.diallingCode}})
+    </mat-option>
+  </mat-select>
+</mat-form-field>
