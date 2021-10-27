@@ -4,6 +4,7 @@ import {catchError, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Country} from '../model/country.model';
 import {MatSelectChange} from '@angular/material/select';
+import {UtilitiesService} from '../service/utilities.service';
 
 @Component({
   selector: 'app-country-code-list',
@@ -16,15 +17,8 @@ export class CountryCodeListComponent implements OnInit {
 
   $countries: Observable<Country[]>;
 
-  constructor(private _phoneValidationService: PhoneValidationService) {
-    this.$countries = this._phoneValidationService.getCountryList()
-      .pipe(map(countries => {
-        let result: Country[] = [];
-        Object.keys(countries).forEach(country =>
-          result.push(new Country(countries[country].country_name, countries[country].dialling_code, country)))
-        return result;
-      }));
-  //  TODO: Refactor this and make the component stateless
+  constructor(private _phoneValidationService: PhoneValidationService, private _utilService: UtilitiesService) {
+    this.$countries = this._phoneValidationService.getCountryList().pipe(map(_utilService.mapApiCountryResponse));
   }
 
   ngOnInit(): void {

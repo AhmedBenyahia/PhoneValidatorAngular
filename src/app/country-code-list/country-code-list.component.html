@@ -1,4 +1,4 @@
-<mat-form-field style="width:88%;">  <!--  TODO: remove this-->
+<mat-form-field style="width:88%;">
   <mat-select placeholder="Country (optional)" (selectionChange)="selectCountry($event)">
     <mat-option *ngFor="let country of $countries | async" [value]="country">
       <mat-icon>
