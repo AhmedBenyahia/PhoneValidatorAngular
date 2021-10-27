@@ -14,7 +14,6 @@ export class PhoneValidatorComponent implements OnInit {
 
   selectedCountry!: Country;
   phoneNumber = new FormControl('', [Validators.required]);
-  importErrors!: [{code: string, message: string}];
   $validationResult!: Observable<PhoneValidationApiResponse>;
 
   constructor(private _phoneValidationService: PhoneValidationService) { }
