@@ -1,6 +1,6 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import {PhoneValidationService} from '../service/phone-validation.service';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Country} from '../model/country.model';
 import {MatSelectChange} from '@angular/material/select';

@@ -27,6 +27,8 @@ export class PhoneValidatorComponent implements OnInit {
   }
 
   validateNumber() {
-    this.$validationResult = this._phoneValidationService.validatePhoneNumber(this.phoneNumber.value);
+    this.$validationResult = this._phoneValidationService.validatePhoneNumber(
+      this.phoneNumber.value,
+      this.selectedCountry?.countryCode ?? '');
   }
 }

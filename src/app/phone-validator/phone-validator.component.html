@@ -6,7 +6,7 @@
 
   <!-- Resources -->
   <h2>Phone Validator</h2>
-  <p>You can enter a phone number directly or choose the country first:</p>
+  <p>You can enter a phone number directly with country code or choose the country code from the list:</p>
 
   <div class="card-container mt-3">
     <div class="card">
@@ -14,7 +14,7 @@
     </div>
 
     <div class="card">
-      <form>
+      <form onSubmit="return false">
         <mat-form-field >
           <mat-label>Phone Number</mat-label>
           <input matInput
@@ -29,8 +29,6 @@
 
     </div>
 
-
-
   </div>
 
   <div>
@@ -43,22 +41,29 @@
     </button>
   </div>
 
-  <div *ngIf="($validationResult | async) as validationResult"  class="mt-2">
+  <div *ngIf="($validationResult | async) as validationResult"  class="mt-5">
       <div *ngIf="validationResult.success === false || validationResult.valid === false" class="alert alert-danger">
-                        <span><strong><em class="fa fa-exclamation-triangle mr-2"
-                                          aria-hidden="true"></em>
-                          {{'pages.ltm.import.failed'}} : </strong></span>
-        <ng-container *ngFor="let err of importErrors; let i = index">
-          <div class="ml-md-5"> {{'pages.shared.line'}} {{err.message}}:
-            {{'pages.ltm.errors.codes.' + err.code}}</div>
-        </ng-container>
+            <span><strong><em class="fa fa-exclamation-triangle mr-2" aria-hidden="true"></em>
+                   {{validationResult.success === false ? validationResult.error.info : "The phone number you entered is invalid"}}
+            </strong></span>
       </div>
-      <div *ngIf="!importErrors"
-           class="alert alert-success">
-                        <span><strong><em class="fa fa-check-circle "
-                                          ></em>
-                          {{'pages.ltm.import.success'}} </strong></span>
-      </div>
+    <div class="row justify-content-center ">
+      <mat-card *ngIf="validationResult.valid" class="col-md-6 alert alert-light">
+          <div class="row">
+            <div class="col-md-6"><span><strong> Status:  </strong></span></div> <div class="col-md-6">Valid <em class="fa fa-check-circle"></em></div>
+            <div class="col-md-6"><span><strong> Phone Number:  </strong></span></div> <div class="col-md-6">{{validationResult.number}} </div>
+            <div class="col-md-6"><span><strong> Local Format:  </strong></span></div> <div class="col-md-6">{{validationResult.local_format}} </div>
+            <div class="col-md-6"><span><strong> International Format:</strong></span></div> <div class="col-md-6">{{validationResult.international_format}} </div>
+            <div class="col-md-6"><span><strong> Country Prefix:  </strong></span></div> <div class="col-md-6">{{validationResult.country_prefix}} </div>
+            <div class="col-md-6"><span><strong> Country Code:  </strong></span></div> <div class="col-md-6">{{validationResult.country_code}} </div>
+            <div class="col-md-6"><span><strong> Country Name:  </strong></span></div> <div class="col-md-6">{{validationResult.country_name}} </div>
+            <div class="col-md-6"><span><strong> Location:  </strong></span></div> <div class="col-md-6">{{validationResult.location}} </div>
+            <div class="col-md-6"><span><strong> Carrier:  </strong></span></div> <div class="col-md-6">{{validationResult.carrier}} </div>
+            <div class="col-md-6"><span><strong> Line Type:  </strong></span></div> <div class="col-md-6">{{validationResult.line_type}} </div>
+        </div>
+      </mat-card>
+
+    </div>
   </div>
 
   <!-- Footer -->

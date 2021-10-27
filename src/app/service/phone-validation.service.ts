@@ -17,9 +17,9 @@ export class PhoneValidationService {
       {params: {access_key: environment.access_key}});
   }
 
-  validatePhoneNumber(number: number) {
+  validatePhoneNumber(number: number, countryCode: string) {
     return this.http.get<PhoneValidationApiResponse>(
       `${environment.phoneValidationApi}/validate`,
-      {params: {access_key: environment.access_key, number}});
+      {params: {access_key: environment.access_key, number, country_code: countryCode}});
   }
 }
