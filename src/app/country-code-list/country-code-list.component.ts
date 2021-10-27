@@ -28,7 +28,6 @@ export class CountryCodeListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   selectCountry(selectedCountry: MatSelectChange) {
