@@ -9,8 +9,8 @@ export class PhoneValidationApiResponse {
   location!: string;
   carrier!: string;
   line_type!: string
-  success!: boolean;
-  error!: {
+  success?: boolean;
+  error?: {
     code: number;
     type: string;
     info: string
