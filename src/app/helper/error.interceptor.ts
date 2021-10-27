@@ -32,6 +32,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           map((event: HttpResponse<PhoneValidationApiResponse>) => {
             const {body} = event;
             if (body && body.success === false) {
+              // @ts-ignore
               const {code, info, type} = body.error;
               switch (code) {
                 case 404: this.openSnackBar("The server is Down or no longer Exist !!"); break;
