@@ -14,6 +14,8 @@ export class PhoneValidatorComponent implements OnInit {
 
   selectedCountry!: Country;
   phoneNumber = new FormControl('', [Validators.required]);
+
+  // We are subscribing in the template with the async pipe
   $validationResult!: Observable<PhoneValidationApiResponse>;
 
   constructor(private _phoneValidationService: PhoneValidationService) { }

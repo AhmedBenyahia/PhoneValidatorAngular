@@ -15,6 +15,7 @@ export class CountryCodeListComponent implements OnInit {
 
   @Output() countryChange = new EventEmitter<Country>();
 
+  // It's better to subscribe in the template to auto unsubscribe when the component is destroyed.
   $countries: Observable<Country[]>;
 
   constructor(private _phoneValidationService: PhoneValidationService, private _utilService: UtilitiesService) {

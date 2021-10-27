@@ -22,15 +22,14 @@ export class ErrorInterceptor implements HttpInterceptor {
     constructor(private _snackBar: MatSnackBar) { }
 
   /**
-   * intercept http request.
-   * @param request
-   * @param next
+   * Intercept http request.
    */
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
           filter((event: any) => event instanceof HttpResponse),
           map((event: HttpResponse<PhoneValidationApiResponse>) => {
             const {body} = event;
+            // If the request didn't succeed, we display and alert with a message
             if (body && body.success === false) {
               // @ts-ignore
               const {code, info, type} = body.error;
@@ -43,6 +42,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 case 105: this.openSnackBar("Your Subscription Don't allow the use of HTTPS !!"); break;
                 case 102: this.openSnackBar("Invalid User !!"); break;
               }
+              // And we transform the response to an error so that it will not be catch bu the subscribe fn.
               throw new HttpErrorResponse({
                 error: info,
                 headers: event.headers,
@@ -57,6 +57,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           }));
     }
 
+    // Display an alert
   openSnackBar(message: string) {
     this._snackBar.open(message, "Dismiss");
   }
