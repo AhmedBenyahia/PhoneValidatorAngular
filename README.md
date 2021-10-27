@@ -1,7 +1,7 @@
 
 # Internationa Phone Numbers Validator [![LinkedIn][linkedin-shield]][linkedin-url] 
 
-[DEMO](http://auto-ecole.tn.s3-website.eu-west-3.amazonaws.com/companies/60b802626730d700090951b2/dashboard)
+[DEMO](https://master.d3gbi106qnhuom.amplifyapp.com/)
 
  ## Clean, Beautiful Interface
 ![image](https://drive.google.com/uc?export=view&id=1fgRI7C38UV2jJrM70Ro-NtXQJ45OXPsW)
